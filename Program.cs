@@ -9,6 +9,7 @@ builder.Services.AddDbContext<TicketDBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("TicketDB"));
 });
+builder.Services.AddSingleton<ILoginManageService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -15,6 +15,7 @@ namespace Ticket_System.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 
