@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Ticket_System.Filters;
 using Ticket_System.Models;
 
 namespace Ticket_System.Controllers
 {
+    [CustomAuthorization]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -15,7 +18,6 @@ namespace Ticket_System.Controllers
 
         public IActionResult Index()
         {
-
             return View();
         }
 
