@@ -1,8 +1,5 @@
 ﻿@model LoginViewModel;
-@{
-}
 @section Styles{
-<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <style>
     #login-card {
         position: absolute;
@@ -14,29 +11,65 @@
     }
 </style>
 }
-@{
-    string errorMessage = TempData["LoginError"] as string;
-
-    if (!string.IsNullOrWhiteSpace(errorMessage))
-    {
-        <div>
-            @errorMessage
-        </div>
-    }
-}
-<div id="login-card" class="card shadow p-3">
-    <form id="login-form"  asp-action="Index" asp-controller="Login" method="post">
-        <div class="mb-3">
-            <label for="UserName" class="form-label">使用者</label>
-            <input type="text" name="UserName" class="form-control" id="UserName" placeholder="Jay Chen">
-        </div>
-        <div class="mb-3">
-            <label for="Password" class="form-label">密碼</label>
-            <input type="Password" name="Password" class="form-control"  placeholder=""/>
-        </div>
-         <div class="mb-3 d-flex justify-content-end">
-             <button type="submit" class="btn btn-primary">登入</button>
-             <button type="submit" class="btn btn-secondary ms-2">註冊</button>
-        </div>
-    </form>
+<div id="app">
+    <div id="login-card" class="card shadow p-3">
+        <form id="login-form" asp-action="Index" asp-controller="Login" method="post">
+            <div class="mb-3">
+                <label for="UserName" class="form-label">使用者</label>
+                <input v-model="Login.ac" type="text" name="UserName" class="form-control" id="UserName">
+            </div>
+            <div class="mb-3">
+                <label for="Password" class="form-label">密碼</label>
+                <input v-model="Login.pw" type="Password" name="Password" class="form-control" />
+            </div>
+            <div class="mb-3 d-flex justify-content-between">
+                <button @@click="login('admin')" type="button" class="btn btn-sm btn-primary">Admin</button>
+                <button @@click="login('qa')" type="button" class="btn btn-sm btn-warning">QA</button>
+                <button @@click="login('rd')" type="button" class="btn btn-sm btn-info">RD</button>
+                <button @@click="login('pm')" type="button" class="btn btn-sm btn-danger">PM</button>
+                <button type="submit" class="btn btn-primary">登入</button>
+                <a asp-action="Register" class="btn btn-secondary ms-2">前往註冊</a>
+            </div>
+        </form>
+    </div>
 </div>
+
+@section Scripts{
+<script type="text/javascript">
+    const app = new Vue({
+               el: '#app',
+               mounted: function () {
+               },
+               data: {
+                   Login:{
+                       ac:'',
+                       pw:''
+                   },
+                   Users:{
+                       admin:{
+                           ac:'Admin',
+                           pw:'Admin'
+                       },
+                       qa:{
+                           ac:'QA',
+                           pw:'QA'
+                       },
+                       rd:{
+                           ac:'RD',
+                           pw:'RD'
+                       },
+                       pm:{
+                           ac:'PM',
+                           pw:'PM'
+                       }
+                   }
+               },
+               methods: {
+                   login(role){
+                       Object.assign(this.Login,this.Users[role]);
+                   }
+               }
+           })
+
+</script>
+}

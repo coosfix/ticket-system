@@ -1,18 +1,54 @@
+
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+html, body {
+    height: 100vh;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    background-color: #ffffff;
+}
+
+.ticket-card {
+    cursor: pointer;
+    position: relative;
+    border-top:5px solid #007feb;
+}
+    .ticket-card.resolve:before {
+        content: 'RESOLVE';
+        position: absolute;
+        top: 30px;
+        right: 5px;
+        color: #9d9c9c;
+        font-size: 1.5rem;
+        font-weight: bold;
+        transform: rotate(0.1turn);
+    }
+
+.ticket-tag {
+    text-align: left;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #808080;
 }

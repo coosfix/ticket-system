@@ -1,0 +1,29 @@
+﻿@model LoginViewModel;
+@section Styles{
+<style>
+    #login-card {
+        position: absolute;
+        width: 400px;
+        max-width: 80%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+</style>
+}
+<div id="login-card" class="card shadow p-3">
+    <form id="login-form" asp-action="Index" asp-controller="Login" method="post">
+        <div class="mb-3">
+            <label for="UserName" class="form-label">使用者</label>
+            <input type="text" name="UserName" class="form-control" id="UserName" placeholder="Jay Chen" value="jay">
+        </div>
+        <div class="mb-3">
+            <label for="Password" class="form-label">密碼</label>
+            <input type="Password" name="Password" class="form-control" value="123" />
+        </div>
+        <div class="mb-3 d-flex justify-content-end">
+            <button type="submit" asp-action="Register" class="btn btn-primary ms-2">註冊</button>
+            <a href="/Login" class="btn btn-secondary ms-2">回到登入</a>
+        </div>
+    </form>
+</div>

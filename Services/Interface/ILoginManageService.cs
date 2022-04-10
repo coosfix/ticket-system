@@ -2,6 +2,6 @@
 {
     public interface ILoginManageService
     {
-        bool IsLoggedIn(LoginViewModel model);
+        bool IsLoggedIn(LoginViewModel model, out int? UserId, out int? RoleName);
     }
 }

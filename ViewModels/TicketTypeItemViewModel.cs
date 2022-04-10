@@ -1,9 +1,8 @@
-﻿namespace Ticket_System.Models
+﻿namespace Ticket_System.ViewModels
 {
-    public class UserGroup
+    public class TicketTypeItemViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
     }
 }

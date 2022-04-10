@@ -1,0 +1,94 @@
+﻿@model TicketsViewModel
+@inject IAccessManageService access
+@{
+    ViewData["Title"] = "Ticket Detail";
+    var role = Context.Session.GetInt32("role").Value;
+    var disable = access.TicketEdit(role, Model.TicketsTypeId) && !Model.Resolved ? "" : "disabled";
+}
+@section Styles{
+<style>
+    .form-label {
+        margin-top: .5rem
+    }
+</style>
+}
+<div id="app" class="h-100 d-flex justify-content-center align-items-center">
+    <div class="card shadow p-3">
+        <fieldset @disable>
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="TicketsId" />
+                <div class="">
+                    <label asp-for="Summary" class="form-label">Summary</label>
+                    <input type="text" asp-for="Summary" class="form-control">
+                    <span asp-validation-for="Summary" class="text-danger"></span>
+                </div>
+                <div class="">
+                    <label for="Description" class="form-label">Description</label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label asp-for="Severity" class="form-label">Severity</label>
+                        <input type="text" asp-for="Severity" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Priority" class="form-label">Priority</label>
+                        <input type="text" asp-for="Priority" class="form-control">
+                    </div>
+                </div>
+
+                <div class="">
+                    <div class="ticket-tag my-2">
+                        @switch (Model.TicketsTypeId)
+                        {
+                            case 1:
+                                <span class="badge bg-secondary">Bug</span>
+                                break;
+                            case 2:
+                                <span class="badge bg-primary">Feature Request</span>
+                                break;
+                            case 3:
+                                <span class="badge bg-warning">Test Case</span>
+                                break;
+                        }
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">編輯</button>
+            </form>
+        </fieldset>
+        @if (access.TicketResolved(role, Model.TicketsTypeId) && !Model.Resolved)
+        {
+            <form method="post" asp-action="Resolve" asp-route-Id="@Model.TicketsId" class="d-flex">
+                <button type="submit" @@click.stop="resolveBtn('@Model.TicketsId',$event)" class="btn btn-primary w-100 mt-2">Resolve</button>
+            </form>
+        }
+    </div>
+</div>
+
+@section Scripts{
+      @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+ }
+<script type="text/javascript">
+    const app = new Vue({
+               el: '#app',
+               components: {
+               },
+               mounted: function () {
+               },
+               data: {
+               },
+               methods: {
+                   resolveBtn(ticketId,event){
+                       if(!confirm('確定要 Resolve?')){
+                           if(event) {
+                            event.preventDefault();
+                           }
+                       }
+                   },
+               },
+           })
+
+</script>
+}

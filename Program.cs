@@ -1,16 +1,23 @@
 using Microsoft.EntityFrameworkCore;
-using Ticket_System.Models;
+using Ticket_System.Filters;
 using Ticket_System.Services.Implement;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<ILoginManageService, LoginManageService>();
+builder.Services.AddTransient<ITicketsManageService, TicketsManageService>();
+builder.Services.AddScoped<IAccessManageService, AccessManageService >();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add(typeof(CustomAuthorizationFilter));
+});
 builder.Services.AddDbContext<TicketDBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("TicketDB"));
 });
-builder.Services.AddTransient<ILoginManageService, LoginManageService>();
+
 
 builder.Services.AddSession(options =>
 {
@@ -34,6 +41,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Ticket}/{action=Index}/{id?}");
 
 app.Run();

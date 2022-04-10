@@ -1,0 +1,102 @@
+﻿@model List<TicketsViewModel>
+@inject IAccessManageService access
+@{
+    ViewData["Title"] = "Ticket Page";
+    var role = Context.Session.GetInt32("role").Value;
+    void CardTag(int id)
+    {
+        switch (id)
+        {
+            case 1:
+                <span class="badge bg-secondary">Bug</span>
+                break;
+            case 2:
+                <span class="badge bg-primary">Feature Request</span>
+                break;
+            case 3:
+                <span class="badge bg-warning">Test Case</span>
+                break;
+        }
+    }
+}
+<div id="app">
+    @if (access.TicketAdd(role))
+    {
+        <a asp-action="Add" class="btn btn-primary mb-2">新增</a>
+    }
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-body">
+                    @foreach (var item in Model.Where(w => !w.Resolved))
+                    {
+                        <div class="card ticket-card shadow-sm my-2 p-3 pt-2">
+                            @if (access.TicketDel(role, item.TicketsTypeId))
+                            {
+                                <form method="post" asp-action="Delete" asp-route-Id="@item.TicketsId" class="d-flex">
+                                    <button type="submit" @@click.stop="delBtn('@item.TicketsId',$event)" type="button" class="btn-close ms-auto" aria-label="Close"></button>
+                                </form>
+                            }
+                            <h5 class="card-title">@item.Summary</h5>
+                            <p class="card-text mb-0">@item.Description</p>
+                            <div class="ticket-tag my-2">
+                                @{
+                                    CardTag(item.TicketsTypeId);
+                                }
+                            </div>
+                            <a asp-controller="Ticket" asp-action="Detail" asp-route-Id="@item.TicketsId" class="btn btn-sm btn-outline-primary ms-auto">檢視</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-body">
+                    @foreach (var item in Model.Where(w => w.Resolved))
+                    {
+                        <div class="card ticket-card shadow-sm my-2 p-3 pt-2 resolve">
+                            @if (access.TicketDel(role, item.TicketsTypeId))
+                            {
+                                <form method="post" asp-action="Delete" asp-route-Id="@item.TicketsId" class="d-flex">
+                                    <button type="submit" @@click.stop="delBtn('@item.TicketsId',$event)" type="button" class="btn-close ms-auto" aria-label="Close"></button>
+                                </form>
+                            }
+                            <h5 class="card-title">@item.Summary</h5>
+                            <p class="card-text mb-0">@item.Description</p>
+                            <div class="ticket-tag my-2">
+                                @{
+                                    CardTag(item.TicketsTypeId);
+                                }
+                            </div>
+                            <a asp-controller="Ticket" asp-action="Detail" asp-route-Id="@item.TicketsId" class="btn btn-sm btn-outline-primary ms-auto">檢視</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+<script type="text/javascript">
+    const app = new Vue({
+               el: '#app',
+               components: {
+               },
+               mounted: function () {
+               },
+               data: {
+               },
+               methods: {
+                   delBtn(ticketId,event){
+                       if(!confirm('想要刪除該單子嗎?')){
+                           if(event) {
+                            event.preventDefault();
+                           }
+                       }
+                   },
+               }
+           })
+
+</script>
+}

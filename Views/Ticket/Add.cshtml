@@ -1,0 +1,52 @@
+﻿@model TicketsViewModel
+@inject ITicketsManageService ticketsManageService
+@{
+    ViewData["Title"] = "Add";
+    int role = Context.Session.GetInt32("role").Value;
+}
+@section Styles{
+<style>
+    .form-label {
+        margin-top: .5rem
+    }
+</style>
+}
+<div class="h-100 d-flex justify-content-center align-items-center">
+    <div class="card shadow p-3">
+        <form asp-action="Add" method="post">
+            <div class="">
+                <label asp-for="Summary" class="form-label">Summary</label>
+                <input type="text" asp-for="Summary" class="form-control">
+                <span asp-validation-for="Summary" class="text-danger"></span>
+            </div>
+            <div class="">
+                <label for="Description" class="form-label">Description</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label asp-for="Severity" class="form-label">Severity</label>
+                    <input type="text" asp-for="Severity" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Priority" class="form-label">Priority</label>
+                    <input type="text" asp-for="Priority" class="form-control">
+                </div>
+            </div>
+            <div class="">
+                <label asp-for="TicketsTypeId" class="form-label"></label>
+                <select asp-items="ticketsManageService.TicketTypeItems(role)" asp-for="TicketsTypeId" class="form-control">
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-2">新增</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+      @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+ }
+}
