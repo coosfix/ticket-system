@@ -29,7 +29,7 @@ namespace Ticket_System.Controllers
             {
                 return View(model);
             }
-            if (ticketsManageService.Add(model))
+            if (ticketsManageService.Add(model, HttpContext.Session.GetInt32("userId").Value))
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -57,9 +57,8 @@ namespace Ticket_System.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-
             return RedirectToAction(nameof(Index));
-        }        
+        }
         [HttpPost]
         public IActionResult Resolve(int id)
         {

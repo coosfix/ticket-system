@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<ILoginManageService, LoginManageService>();
 builder.Services.AddTransient<ITicketsManageService, TicketsManageService>();
+builder.Services.AddTransient<IUserManageService, UserManageService>();
 builder.Services.AddScoped<IAccessManageService, AccessManageService >();
 builder.Services.AddControllersWithViews(options =>
 {

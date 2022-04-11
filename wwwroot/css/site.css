@@ -49,6 +49,6 @@ footer {
 
 .ticket-tag {
     text-align: left;
-    padding-bottom: 1rem;
+    margin-bottom:1rem;
     border-bottom: 1px dashed #808080;
 }

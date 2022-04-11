@@ -13,6 +13,7 @@ namespace Ticket_System.ViewModels
         public string Priority { get; set; }
         [Display(Name ="Type")]
         public int TicketsTypeId { get; set; }
+        public string UserName { get; set; }
         public bool Resolved { get; set; }
     }
 }

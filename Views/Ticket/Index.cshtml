@@ -8,13 +8,13 @@
         switch (id)
         {
             case 1:
-                <span class="badge bg-secondary">Bug</span>
+                <span class="badge bg-secondary my-2">Bug</span>
                 break;
             case 2:
-                <span class="badge bg-primary">Feature Request</span>
+                <span class="badge bg-primary my-2">Feature Request</span>
                 break;
             case 3:
-                <span class="badge bg-warning">Test Case</span>
+                <span class="badge bg-warning my-2">Test Case</span>
                 break;
         }
     }
@@ -39,10 +39,15 @@
                             }
                             <h5 class="card-title">@item.Summary</h5>
                             <p class="card-text mb-0">@item.Description</p>
-                            <div class="ticket-tag my-2">
-                                @{
-                                    CardTag(item.TicketsTypeId);
-                                }
+                            <div class="row ticket-tag">
+                                <div class="col-md-6">
+                                    @{
+                                        CardTag(item.TicketsTypeId);
+                                    }
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="badge rounded-pill bg-success my-2">@item.UserName</span>
+                                </div>
                             </div>
                             <a asp-controller="Ticket" asp-action="Detail" asp-route-Id="@item.TicketsId" class="btn btn-sm btn-outline-primary ms-auto">檢視</a>
                         </div>
@@ -64,10 +69,15 @@
                             }
                             <h5 class="card-title">@item.Summary</h5>
                             <p class="card-text mb-0">@item.Description</p>
-                            <div class="ticket-tag my-2">
-                                @{
-                                    CardTag(item.TicketsTypeId);
-                                }
+                            <div class="row ticket-tag">
+                                <div class="col-md-6">
+                                    @{
+                                        CardTag(item.TicketsTypeId);
+                                    }
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="badge rounded-pill bg-success my-2">@item.UserName</span>
+                                </div>
                             </div>
                             <a asp-controller="Ticket" asp-action="Detail" asp-route-Id="@item.TicketsId" class="btn btn-sm btn-outline-primary ms-auto">檢視</a>
                         </div>

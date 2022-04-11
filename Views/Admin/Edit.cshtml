@@ -1,0 +1,23 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "UserManage Edit";
+}
+
+<div class="h-100 d-flex justify-content-center align-items-center">
+    <div class="card shadow p-3">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" class="form-control">
+            <div class="">
+                <label asp-for=" Name" class="form-label">Name</label>
+                <input type="text" asp-for="Name" class="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="">
+                <label asp-for="RoleId" class="form-label"></label>
+                <select asp-items="@TempData["RoleItems"] as List<SelectListItem>" asp-for="RoleId" class="form-select">
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">編輯</button>
+        </form>
+    </div>
+</div>

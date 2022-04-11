@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace Ticket_System.Services.Implement
+﻿namespace Ticket_System.Services.Implement
 {
     public class AccessManageService : IAccessManageService
     {
@@ -10,7 +8,6 @@ namespace Ticket_System.Services.Implement
         {
             this.ticketDBContext = ticketDBContext;
         }
-
         public bool TicketAdd(int role)
         {
             return ticketDBContext.TicketActionRules

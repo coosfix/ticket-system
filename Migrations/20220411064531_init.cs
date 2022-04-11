@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Ticket_System.Migrations
 {
-    public partial class init2 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -113,8 +113,8 @@ namespace Ticket_System.Migrations
                     Priority = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Resolved = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     TicketTypeId = table.Column<int>(type: "int", nullable: false),
-                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -129,7 +129,8 @@ namespace Ticket_System.Migrations
                         name: "FK_Tickets_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -164,7 +165,8 @@ namespace Ticket_System.Migrations
                 {
                     { 1, "QA" },
                     { 2, "RD" },
-                    { 3, "PM" }
+                    { 3, "PM" },
+                    { 4, "Admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -186,10 +188,14 @@ namespace Ticket_System.Migrations
                     { 2, "Delete", 1 },
                     { 3, "Edit", 1 },
                     { 4, "Resolve", 1 },
-                    { 5, "Resolve", 3 },
-                    { 6, "Resolve", 2 },
-                    { 7, "Add", 3 },
-                    { 8, "Add", 2 }
+                    { 5, "Add", 2 },
+                    { 6, "Delete", 2 },
+                    { 7, "Edit", 2 },
+                    { 8, "Resolve", 2 },
+                    { 9, "Add", 3 },
+                    { 10, "Delete", 3 },
+                    { 11, "Edit", 3 },
+                    { 12, "Resolve", 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -199,18 +205,10 @@ namespace Ticket_System.Migrations
                 {
                     { 1, 1 },
                     { 1, 3 },
-                    { 3, 2 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Tickets",
-                columns: new[] { "TicketsId", "CreateTime", "Description", "Priority", "Severity", "Summary", "TicketTypeId", "UserId" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2022, 4, 10, 23, 33, 5, 128, DateTimeKind.Local).AddTicks(5120), "xxxx", null, null, "12qqqq3rrr", 1, null },
-                    { 2, new DateTime(2022, 4, 10, 23, 33, 5, 128, DateTimeKind.Local).AddTicks(5129), "😂", null, null, "123rttrtrrr", 1, null },
-                    { 3, new DateTime(2022, 4, 10, 23, 33, 5, 128, DateTimeKind.Local).AddTicks(5131), "😀", null, null, "123xxxxrrr", 2, null },
-                    { 4, new DateTime(2022, 4, 10, 23, 33, 5, 128, DateTimeKind.Local).AddTicks(5132), "😎😎", null, null, "123ssssrrr", 3, null }
+                    { 3, 2 },
+                    { 4, 1 },
+                    { 4, 2 },
+                    { 4, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -220,7 +218,8 @@ namespace Ticket_System.Migrations
                 {
                     { 1, "QA", "QA", 1 },
                     { 2, "RD", "RD", 2 },
-                    { 3, "PM", "PM", 3 }
+                    { 3, "PM", "PM", 3 },
+                    { 4, "Admin", "Admin", 4 }
                 });
 
             migrationBuilder.InsertData(
@@ -231,11 +230,34 @@ namespace Ticket_System.Migrations
                     { 1, 1 },
                     { 1, 2 },
                     { 1, 3 },
-                    { 1, 5 },
-                    { 1, 7 },
+                    { 1, 9 },
+                    { 1, 12 },
                     { 2, 4 },
-                    { 2, 6 },
-                    { 3, 8 }
+                    { 2, 8 },
+                    { 3, 9 },
+                    { 4, 1 },
+                    { 4, 2 },
+                    { 4, 3 },
+                    { 4, 4 },
+                    { 4, 5 },
+                    { 4, 6 },
+                    { 4, 7 },
+                    { 4, 8 },
+                    { 4, 9 },
+                    { 4, 10 },
+                    { 4, 11 },
+                    { 4, 12 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Tickets",
+                columns: new[] { "TicketsId", "CreateTime", "Description", "Priority", "Severity", "Summary", "TicketTypeId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 4, 11, 14, 45, 30, 817, DateTimeKind.Local).AddTicks(8580), "👾", null, null, "12qqqq3rrr", 1, 1 },
+                    { 2, new DateTime(2022, 4, 11, 14, 45, 30, 817, DateTimeKind.Local).AddTicks(8593), "😂", null, null, "123rttrtrrr", 1, 1 },
+                    { 3, new DateTime(2022, 4, 11, 14, 45, 30, 817, DateTimeKind.Local).AddTicks(8595), "😀", null, null, "123xxxxrrr", 2, 3 },
+                    { 4, new DateTime(2022, 4, 11, 14, 45, 30, 817, DateTimeKind.Local).AddTicks(8596), "😎", null, null, "123ssssrrr", 3, 1 }
                 });
 
             migrationBuilder.CreateIndex(

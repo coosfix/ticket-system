@@ -11,7 +11,7 @@ namespace Ticket_System.Services.Implement
         {
             this.ticketDBContext = ticketDBContext;
         }
-        public bool Add(TicketsViewModel model)
+        public bool Add(TicketsViewModel model,int userId)
         {
             try
             {
@@ -23,6 +23,7 @@ namespace Ticket_System.Services.Implement
                     Severity = model.Severity,
                     Priority = model.Priority,
                     TicketTypeId = model.TicketsTypeId,
+                     UserId = userId,
                     CreateTime = DateTime.Now
                 });
                 ticketDBContext.SaveChanges();
@@ -51,7 +52,7 @@ namespace Ticket_System.Services.Implement
 
         public TicketsViewModel GetSingle(int id)
         {
-            var data = ticketDBContext.Tickets
+            var data = ticketDBContext.Tickets.Include(i => i.User)
                 .FirstOrDefault(f => f.TicketsId == id);
             if (data is null) return null;
             return new TicketsViewModel
@@ -61,6 +62,7 @@ namespace Ticket_System.Services.Implement
                 Description = data.Description,
                 Priority = data.Priority ?? string.Empty,
                 Severity = data.Severity ?? string.Empty,
+                UserName = data.User.Name,
                 Resolved = data.Resolved,
                 TicketsTypeId = data.TicketTypeId,
             };
@@ -69,6 +71,7 @@ namespace Ticket_System.Services.Implement
         public List<TicketsViewModel> GetAll() =>
             ticketDBContext.Tickets
             .AsNoTracking()
+            .Include(i => i.User)
             .Select(x => new TicketsViewModel
             {
                 TicketsId = x.TicketsId,
@@ -77,6 +80,7 @@ namespace Ticket_System.Services.Implement
                 Priority = x.Priority,
                 Severity = x.Severity,
                 TicketsTypeId = x.TicketTypeId,
+                UserName = x.User.Name,
                 Resolved = x.Resolved
             })
             .ToList();

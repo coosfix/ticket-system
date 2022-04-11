@@ -13,7 +13,13 @@
     <header>
         <nav class="navbar navbar-light bg-light shadow">
             <div class="container">
-                <a class="navbar-brand p-2" asp-controller="Ticket" asp-action="Index">Ticket_System</a>
+                <div>
+                    <a class="navbar-brand p-2" asp-controller="Ticket" asp-action="Index">Ticket_System</a>
+                    @if (Context.Session.GetInt32("role") == 4)
+                    {
+                        <a class="btn btn-sm btn-primary" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                    }
+                </div>
                 <div>
                     @await Component.InvokeAsync("UserStatu")
                     <a class="btn btn-sm btn-danger" asp-area="" asp-controller="Login" asp-action="Logout">登出</a>
@@ -27,11 +33,11 @@
         </main>
     </div>
 
-@*    <footer class="border-top footer text-muted">
+    @*    <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - Ticket_System - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        &copy; 2022 - Ticket_System - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>*@
+        </footer>*@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>

@@ -7,7 +7,7 @@
         max-width: 80%;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
     }
 </style>
 }
@@ -28,7 +28,6 @@
                 <button @@click="login('rd')" type="button" class="btn btn-sm btn-info">RD</button>
                 <button @@click="login('pm')" type="button" class="btn btn-sm btn-danger">PM</button>
                 <button type="submit" class="btn btn-primary">登入</button>
-                <a asp-action="Register" class="btn btn-secondary ms-2">前往註冊</a>
             </div>
         </form>
     </div>
@@ -37,39 +36,39 @@
 @section Scripts{
 <script type="text/javascript">
     const app = new Vue({
-               el: '#app',
-               mounted: function () {
-               },
-               data: {
-                   Login:{
-                       ac:'',
-                       pw:''
-                   },
-                   Users:{
-                       admin:{
-                           ac:'Admin',
-                           pw:'Admin'
-                       },
-                       qa:{
-                           ac:'QA',
-                           pw:'QA'
-                       },
-                       rd:{
-                           ac:'RD',
-                           pw:'RD'
-                       },
-                       pm:{
-                           ac:'PM',
-                           pw:'PM'
-                       }
-                   }
-               },
-               methods: {
-                   login(role){
-                       Object.assign(this.Login,this.Users[role]);
-                   }
-               }
-           })
+        el: '#app',
+        mounted: function () {
+        },
+        data: {
+            Login: {
+                ac: '',
+                pw: ''
+            },
+            Users: {
+                admin: {
+                    ac: 'Admin',
+                    pw: 'Admin'
+                },
+                qa: {
+                    ac: 'QA',
+                    pw: 'QA'
+                },
+                rd: {
+                    ac: 'RD',
+                    pw: 'RD'
+                },
+                pm: {
+                    ac: 'PM',
+                    pw: 'PM'
+                }
+            }
+        },
+        methods: {
+            login (role) {
+                Object.assign(this.Login, this.Users[role]);
+            }
+        }
+    })
 
 </script>
 }

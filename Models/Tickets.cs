@@ -10,6 +10,8 @@
         public bool Resolved { get; set; }
         public int TicketTypeId { get; set; }
         public TicketType TicketType { get; set; }
+        public int UserId{ get; set; }
+        public User User{ get; set; }
         public DateTime CreateTime { get; set; }
     }
 }

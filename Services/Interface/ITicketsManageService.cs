@@ -6,7 +6,7 @@ namespace Ticket_System.Services.Interface
     {
 
         public List<TicketsViewModel> GetAll();
-        public bool Add(TicketsViewModel model);
+        public bool Add(TicketsViewModel model,int userId);
         public bool Update(TicketsViewModel model);
         public bool Delete(int id);
         public bool Resolve(int id);

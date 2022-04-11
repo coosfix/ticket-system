@@ -12,8 +12,8 @@ using Ticket_System.Models;
 namespace Ticket_System.Migrations
 {
     [DbContext(typeof(TicketDBContext))]
-    [Migration("20220410153305_init2")]
-    partial class init2
+    [Migration("20220411064531_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,6 +54,11 @@ namespace Ticket_System.Migrations
                         {
                             RoleId = 3,
                             Name = "PM"
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            Name = "Admin"
                         });
                 });
 
@@ -105,26 +110,50 @@ namespace Ticket_System.Migrations
                         new
                         {
                             ActionId = 5,
-                            ActionName = "Resolve",
-                            TicketTypeId = 3
+                            ActionName = "Add",
+                            TicketTypeId = 2
                         },
                         new
                         {
                             ActionId = 6,
-                            ActionName = "Resolve",
+                            ActionName = "Delete",
                             TicketTypeId = 2
                         },
                         new
                         {
                             ActionId = 7,
+                            ActionName = "Edit",
+                            TicketTypeId = 2
+                        },
+                        new
+                        {
+                            ActionId = 8,
+                            ActionName = "Resolve",
+                            TicketTypeId = 2
+                        },
+                        new
+                        {
+                            ActionId = 9,
                             ActionName = "Add",
                             TicketTypeId = 3
                         },
                         new
                         {
-                            ActionId = 8,
-                            ActionName = "Add",
-                            TicketTypeId = 2
+                            ActionId = 10,
+                            ActionName = "Delete",
+                            TicketTypeId = 3
+                        },
+                        new
+                        {
+                            ActionId = 11,
+                            ActionName = "Edit",
+                            TicketTypeId = 3
+                        },
+                        new
+                        {
+                            ActionId = 12,
+                            ActionName = "Resolve",
+                            TicketTypeId = 3
                         });
                 });
 
@@ -169,7 +198,13 @@ namespace Ticket_System.Migrations
                         new
                         {
                             RoleId = 1,
-                            TicketActionId = 5,
+                            TicketActionId = 9,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 1,
+                            TicketActionId = 12,
                             CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -181,19 +216,85 @@ namespace Ticket_System.Migrations
                         new
                         {
                             RoleId = 2,
-                            TicketActionId = 6,
-                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            RoleId = 1,
-                            TicketActionId = 7,
+                            TicketActionId = 8,
                             CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             RoleId = 3,
+                            TicketActionId = 9,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketActionId = 1,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketActionId = 2,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketActionId = 3,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketActionId = 4,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketActionId = 5,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketActionId = 6,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketActionId = 7,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
                             TicketActionId = 8,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketActionId = 9,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketActionId = 10,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketActionId = 11,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketActionId = 12,
                             CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -231,7 +332,7 @@ namespace Ticket_System.Migrations
                     b.Property<int>("TicketTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("TicketsId");
@@ -246,38 +347,42 @@ namespace Ticket_System.Migrations
                         new
                         {
                             TicketsId = 1,
-                            CreateTime = new DateTime(2022, 4, 10, 23, 33, 5, 128, DateTimeKind.Local).AddTicks(5120),
-                            Description = "xxxx",
+                            CreateTime = new DateTime(2022, 4, 11, 14, 45, 30, 817, DateTimeKind.Local).AddTicks(8580),
+                            Description = "👾",
                             Resolved = false,
                             Summary = "12qqqq3rrr",
-                            TicketTypeId = 1
+                            TicketTypeId = 1,
+                            UserId = 1
                         },
                         new
                         {
                             TicketsId = 2,
-                            CreateTime = new DateTime(2022, 4, 10, 23, 33, 5, 128, DateTimeKind.Local).AddTicks(5129),
+                            CreateTime = new DateTime(2022, 4, 11, 14, 45, 30, 817, DateTimeKind.Local).AddTicks(8593),
                             Description = "😂",
                             Resolved = false,
                             Summary = "123rttrtrrr",
-                            TicketTypeId = 1
+                            TicketTypeId = 1,
+                            UserId = 1
                         },
                         new
                         {
                             TicketsId = 3,
-                            CreateTime = new DateTime(2022, 4, 10, 23, 33, 5, 128, DateTimeKind.Local).AddTicks(5131),
+                            CreateTime = new DateTime(2022, 4, 11, 14, 45, 30, 817, DateTimeKind.Local).AddTicks(8595),
                             Description = "😀",
                             Resolved = false,
                             Summary = "123xxxxrrr",
-                            TicketTypeId = 2
+                            TicketTypeId = 2,
+                            UserId = 3
                         },
                         new
                         {
                             TicketsId = 4,
-                            CreateTime = new DateTime(2022, 4, 10, 23, 33, 5, 128, DateTimeKind.Local).AddTicks(5132),
-                            Description = "😎😎",
+                            CreateTime = new DateTime(2022, 4, 11, 14, 45, 30, 817, DateTimeKind.Local).AddTicks(8596),
+                            Description = "😎",
                             Resolved = false,
                             Summary = "123ssssrrr",
-                            TicketTypeId = 3
+                            TicketTypeId = 3,
+                            UserId = 1
                         });
                 });
 
@@ -351,6 +456,24 @@ namespace Ticket_System.Migrations
                             RoleId = 3,
                             TicketTypeId = 2,
                             CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketTypeId = 1,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketTypeId = 2,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            RoleId = 4,
+                            TicketTypeId = 3,
+                            CreateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -398,6 +521,13 @@ namespace Ticket_System.Migrations
                             Name = "PM",
                             Password = "PM",
                             UserRoleId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Admin",
+                            Password = "Admin",
+                            UserRoleId = 4
                         });
                 });
 
@@ -439,11 +569,15 @@ namespace Ticket_System.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Ticket_System.Models.User", null)
+                    b.HasOne("Ticket_System.Models.User", "User")
                         .WithMany("Tickets")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("TicketType");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Ticket_System.Models.TicketTypeRules", b =>
