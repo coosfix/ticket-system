@@ -13,3 +13,5 @@ dotnet ef database update -v
 ```
 dotnet watch run
 ```
+## Use Case
+![usecase](./use_case.png)
